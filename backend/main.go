@@ -6,7 +6,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/handlers"
 
+	"example.com/business-dashboard/constants"
 	"example.com/business-dashboard/models"
 )
 
@@ -27,7 +29,15 @@ func main() {
 		v1.GET("/all-active-employees", GetAllActiveEmployees)
 	}
 
-	router.Run("localhost:8080")
+	// set up CORS
+	corsHandler := handlers.CORS(
+		handlers.AllowedOrigins([]string{constants.FrontendURL}),
+		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"}),
+		handlers.AllowedHeaders([]string{"Content-Type"}),
+	)
+
+	// wrap router with CORS handler
+	http.ListenAndServe(":8080", corsHandler(router))
 }
 
 func checkErr(err error) {

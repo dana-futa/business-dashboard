@@ -7,5 +7,8 @@ export function getTestEmployees() {
     return axios.get(`${API_URL}/test-employees`)
         .then((response) => {
             console.log(response)
+        })
+        .catch((err) => {
+            console.error(err);
         });
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Employee } from '@/shared/models/employee';
 import OrgTree from '../components/OrgTree.vue';
+import { getTestEmployees } from '@/shared/services/employee-service';
 
 const employeeTree: Employee =
     {
@@ -88,6 +89,8 @@ const employeeTree: Employee =
 };
 
 console.log('employeeTree', employeeTree);
+
+getTestEmployees();
 </script>
 
 <template>
