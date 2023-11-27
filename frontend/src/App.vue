@@ -3,8 +3,9 @@ import HomeView from './views/HomeView.vue';
 </script>
 
 <template>
-  <HomeView />
+    <Suspense>
+        <HomeView />
+    </Suspense>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

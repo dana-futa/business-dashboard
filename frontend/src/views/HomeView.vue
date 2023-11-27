@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Employee } from '@/shared/models/employee';
 import OrgTree from '../components/OrgTree.vue';
-import { getTestEmployees } from '@/shared/services/employee-service';
+import { getTestEmployees, getTestEmployees2 } from '@/shared/services/employee-service';
 
 const employeeTree: Employee =
     {
@@ -88,13 +88,15 @@ const employeeTree: Employee =
         ],
 };
 
-console.log('employeeTree', employeeTree);
-
-getTestEmployees();
+await getTestEmployees();
+const response = await getTestEmployees2();
+console.log('HomeVue response', response);
 </script>
 
 <template>
     <main>
-        <OrgTree :root="employeeTree" />
+        <Suspense>
+            <OrgTree :root="employeeTree" />
+        </Suspense>
     </main>
 </template>
